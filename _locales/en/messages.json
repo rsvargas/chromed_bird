@@ -691,5 +691,8 @@
 	},
 	"l_shortener_oauth": {
 	  "message": "Use personal account authentication:"
-	}
+	},
+    "shortenTweetButton": {
+      "message": "Shorten Tweet (Ctrl + . )"
+    }
 }

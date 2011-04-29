@@ -155,7 +155,15 @@ input[type='text'] {
   margin-left: -51px;
 }
 
-#shortener_button div {
+#shorten_tweet_button {
+  left: 50%;
+  position: absolute;
+  width: 200px;
+  padding: 1px;
+  margin-left: -101px;
+}
+
+#shortener_button div, #shorten_tweet_button div {
   margin-top: -1px;
   text-align: center;
   cursor: pointer;

@@ -30,7 +30,7 @@ input[type='text'] {
   background-color: #eff4fb;
 }
 
-#shortener_button div {
+#shortener_button div, #shorten_tweet_button div {
   border-bottom-left-radius: 5px 5px;
   border-bottom-right-radius: 5px 5px;
   background-color: #e5effe;
@@ -38,7 +38,7 @@ input[type='text'] {
   border-top: 0px;
 }
 
-#shortener_button div:hover {
+#shortener_button div:hover , #shorten_tweet_button div:hover {
   background-color: #f0f5fb;
   border: 1px solid #c1cddc;
   border-top: 0px;

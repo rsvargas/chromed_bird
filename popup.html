@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head>
 <!-- Theme specific CSS files are loaded later by the ThemeManager -->
@@ -552,6 +552,9 @@ var Composer = {
   },
 
   textareaChanged: function (e) {
+    if( e && e.ctrlKey && e.which == 190 ) { //Ctrl + '.'
+      this.shorten();
+    }
     var el = $("#compose_tweet_area textarea");
     tweetManager.composerData.saveMessage = el.val();
     var availableChars = MAX_TWEET_SIZE - el.val().length;
@@ -560,10 +563,12 @@ var Composer = {
     if(availableChars < 0 || availableChars == MAX_TWEET_SIZE) {
       if(availableChars < 0) {
         charsLeftEl.css('color', 'red');
+        this.showButton()
       }
       $("#compose_tweet_area input[type='button']").attr("disabled", "disabled");
     } else {
       charsLeftEl.css('color', 'black');
+      this.hideButton();
       $("#compose_tweet_area input[type='button']").removeAttr("disabled");
       if(e && e.ctrlKey && e.which == 13) { // Ctrl + Enter
         this.sendTweet();
@@ -580,6 +585,49 @@ var Composer = {
     Composer.textareaChanged();
     Composer.showComposeArea();
     Shortener.clear();
+  },
+  
+  shorten: function() {
+    //based on http://tweetcompressor.com/ by John Forsythe. 
+    //maybe more here: http://en.wikipedia.org/wiki/List_of_Unicode_characters
+    var table = [ ['ii','ⅱ'], ['iv', 'ⅳ'], ['vi', 'ⅵ'], ['ix','ⅸ'],['xi', 'ⅺ'],['oy','ѹ'],['cc', '㏄'],
+                  ['in','㏌'], [ 'nj', 'ǌ'],['NJ','\u01ca'],['ms', '㎳'],['ns', '㎱'],['ps','㎰'],['ls', 'ʪ'],
+                  ['ffl','ﬄ'],['ffi','ﬃ'],['ff','ﬀ'],['fi','ﬁ'],['ae','\u00e6'],['ij','\u0133'],['IJ','\u0132'],
+                  ['OE', '\u0152'],['oe','\u0153'], ['LJ', '\u01c7'],['lj','\u01c9']
+                  ];
+    var textarea = $("#compose_tweet_area textarea");
+    var text = textarea.val();
+    
+    if (text.length > 0) {
+      var words = text.match(/(\S+)(.*?)/g);
+      if (words) {
+        for (i = 0; i < words.length; i += 1) {
+          if (/^[a-zA-Z0-9'"-]+($|[\W]+$)/.test(words[i])) { //avoid URLs.
+            for (j = 0; j < table.length; j += 1) {
+              var c = new RegExp(table[j][0], 'g');
+              words[i] = words[i].replace(c, table[j][1])
+            }
+          }
+        }
+        text = words.join(' ');
+        text = text.replace(/\.\s/g, '．');
+        text = text.replace(/,\s/g, '，')
+      }
+    }
+    //There's still room for improvement, the URLs can be shortened automatically also.
+    textarea.val(text);
+    this.textareaChanged();
+  },
+  showButton: function() {
+    var shortenerButton = $("#shorten_tweet_button div");
+    if(!shortenerButton.is(":visible"))
+      shortenerButton.show('blind', { direction: "vertical" }, 'fast');
+  },
+
+  hideButton: function() {
+    var shortenerButton = $("#shorten_tweet_button div");
+    if(shortenerButton.is(":visible"))
+      shortenerButton.hide('blind', { direction: "vertical" }, 'fast');
   },
 
   refreshNew: function() {
@@ -1730,6 +1778,7 @@ $(function() {
 
   <div id="compose_tweet_area" style="display: none;">
     <textarea rows="4" onkeyup="Composer.textareaChanged(event);" onblur="Composer.textareaChanged();"></textarea>
+    <div id="shorten_tweet_button" onclick="Composer.shorten();"><div><span id="shortenTweetButton" class="i18n"></span></div></div>
     <div id="shortener_area">
       <input type="text" name="shortener_text" onfocus="Shortener.focus();" onkeyup="Shortener.changed(event);" onblur="Shortener.blur();">
       <div id="shorten_current" title="Share current page" onclick="Shortener.shortenCurrentPage();"></div>

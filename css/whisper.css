@@ -25,13 +25,13 @@ input[type='text'] {
   background-color: #ee7;
 }
 
-#shortener_button div {
+#shortener_button div, #shorten_tweet_button div {
   border-bottom-left-radius: 5px 5px;
   border-bottom-right-radius: 5px 5px;
   background-color: #EDEDB1;
 }
 
-#shortener_button div:hover {
+#shortener_button div:hover, #shorten_tweet_button div:hover {
   background-color: #ee7;
 }
 
