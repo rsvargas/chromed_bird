@@ -730,5 +730,8 @@
 	},
 	"w_Quotes": {
 		"message": "Quotes"
+	},
+	"l_photo_thumbnail_max_height": {
+		"message": "Maximum thumbnail height (px):"
 	}
 }
