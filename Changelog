@@ -1,3 +1,11 @@
+2.1.0.0 (2015-07-25)
+
+* Added support for image previews (contributed by Rafael Vargas, refined by Alexander Kashev)
+* Added support for quoted tweets and auto-expanding them
+* Updated Twemoji library, fixed Unicode variant parsing bug
+* Changed "both" username format to be more in line with Twitter Display Requirements
+* Added Czech locale (contributed by Samuel Shifterovich)
+
 2.0.0.4 (2015-01-13)
 
 * Small layout fix for retweets
