@@ -1,3 +1,9 @@
+2.1.0.1 (2015-07-25)
+
+* Fixed auto-expanding of manually collapsed quotes
+* Added support for displaying chain quotes
+* Added ability to reply to own tweets
+
 2.1.0.0 (2015-07-25)
 
 * Added support for image previews (contributed by Rafael Vargas, refined by Alexander Kashev)
