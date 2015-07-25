@@ -733,5 +733,9 @@
 	},
 	"l_photo_thumbnail_max_height": {
 		"message": "Maximum thumbnail height (px):"
+	},
+	"someone": {
+		"message": "someone",
+		"description": "As in, 'quoting someone' when the username is not yet known"
 	}
 }
