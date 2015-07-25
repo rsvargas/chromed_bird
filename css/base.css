@@ -264,6 +264,7 @@ input[type='text'] {
 .tweet .image {
   padding-left: 0.5em;
   padding-right: 0.5em;
+  position: relative;
 }
 
 .tweet .image img {
@@ -272,6 +273,15 @@ input[type='text'] {
   margin-right: auto;
   margin-top: 0.5em;
   margin-bottom: 0.5em;
+  cursor: pointer;
+}
+
+.tweet .image img.play {
+  margin: 0;
+  position: absolute;
+  top: calc(50% - 25px);
+  left: calc(50% - 25px);
+  pointer-events: none;
 }
 
 .tweet .footer {
