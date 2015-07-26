@@ -273,7 +273,7 @@ input[type='text'] {
   margin-right: auto;
   margin-top: 0.5em;
   margin-bottom: 0.5em;
-  cursor: pointer;
+  cursor: zoom-in;
 }
 
 .tweet .image img.play {
@@ -282,6 +282,10 @@ input[type='text'] {
   top: calc(50% - 25px);
   left: calc(50% - 25px);
   pointer-events: none;
+}
+
+.tweet .image img.video_preview {
+  cursor: pointer;
 }
 
 .tweet .footer {
